@@ -1,0 +1,15 @@
+{
+  "autoMemoryEnabled": false,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"$HOME\"/.claude/hooks/session-start-memoire.sh"
+          }
+        ]
+      }
+    ]
+  }
+}
