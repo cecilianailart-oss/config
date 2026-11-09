@@ -1,5 +1,13 @@
 {
   "autoMemoryEnabled": false,
+  "permissions": {
+    "allow": [
+      "mcp__M_moire",
+      "mcp__claude_ai_M_moire",
+      "mcp__Google_Drive",
+      "mcp__claude_ai_Google_Drive"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {

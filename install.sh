@@ -12,11 +12,12 @@ chmod +x "$DEST/hooks/session-start-memoire.sh"
 
 if [ -f "$DEST/settings.json" ]; then
   cp "$DEST/settings.json" "$DEST/settings.json.bak"
-  # Fusion : nos clés l'emportent, le hook SessionStart n'est ajouté qu'une fois.
+  # Fusion : nos clés l'emportent, le hook SessionStart et les autorisations ne sont ajoutés qu'une fois.
   jq -s '
     .[0] as $old | .[1] as $new
     | ($old * ($new | del(.hooks)))
     | .hooks.SessionStart = ((($old.hooks.SessionStart // []) + $new.hooks.SessionStart) | unique)
+    | .permissions.allow = ((($old.permissions.allow // []) + ($new.permissions.allow // [])) | unique)
   ' "$DEST/settings.json.bak" "$SRC/settings.json" > "$DEST/settings.json"
 else
   cp "$SRC/settings.json" "$DEST/settings.json"
